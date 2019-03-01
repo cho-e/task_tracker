@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export MIX_ENV=prod
-export PORT=4794
+export PORT=4791
 export NODEBIN=`pwd`/assets/node_modules/.bin
 export PATH="$PATH:$NODEBIN"
 
@@ -20,6 +20,9 @@ MIX_ENV=prod mix ecto.migrate
 
 echo "Generating release..."
 mix release
+
+echo "Stopping old copy of app, if any..."
+_build/prod/rel/task_tracker/bin/task_tracker stop || true
 
 echo "Starting app..."
 
