@@ -18,3 +18,14 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+
+## Design Choices
+
+  One design decision made was for users to assign a task to a user from
+  a drop-down selection of the current users in the database. This seemed like
+  the most intuitive and user-friendly approach.
+
+  Inputting the time allocated for a task is restricted to 15 minutes increments
+  by setting the up/down buttons to increase the time by 15, and if the user
+  inputs an invalid number, an error is returned.
