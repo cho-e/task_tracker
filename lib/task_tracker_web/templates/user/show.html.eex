@@ -1,4 +1,4 @@
-<h2>Show User</h2>
+<h2>User Profile Page</h2>
 
 <ul>
 
@@ -24,11 +24,36 @@
     <% else %>
     No manager.
     <% end %>
-
   </li>
-
 </ul>
+<%= if is_manager?(@user.id) do %>
 
-<div><span><%= link "View User Profile", to: Routes.user_path(@conn, :edit, @user) %></span></div>
+<table class="table">
+<thead>
+  <strong>Underlings:</strong>
+  <tr>
+    <th>Name</th>
+    <th>Id</th>
+    <th>Email</th>
+</thead>
+<tbody>
+  <%= for user <- get_underlings(@user.id) do %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.id %></td>
+      <td><%= user.email %></td>
+    </tr>
+  <% end %>
+<tbody>
+</table>
+
+
+  <div>
+
+  </div>
+<% else %>
+<div>Not a manager.<div>
+<% end %>
+
 <span><%= link "Edit", to: Routes.user_path(@conn, :edit, @user) %></span>
 <span><%= link "Back", to: Routes.user_path(@conn, :index) %></span>

@@ -53,6 +53,17 @@ defmodule TaskTracker.Users do
    |> Repo.preload(:manager)
   end
 
+  def get_underlings_for_user(id) do
+    underlings = Repo.all(from u in User,
+      where: u.manager_id == ^id)
+    underlings
+    |> Repo.preload(:manager)
+    |> Repo.preload(:underlings)
+    |> Repo.preload(:tasks)
+
+
+  end
+
   @doc """
   Creates a user.
 
