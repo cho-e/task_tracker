@@ -56,6 +56,8 @@ defmodule TaskTracker.Users do
   def get_underlings_for_user(id) do
     underlings = Repo.all(from u in User,
       where: u.manager_id == ^id)
+      |> Repo.preload(:tasks)
+
     underlings
     |> Repo.preload(:manager)
     |> Repo.preload(:underlings)

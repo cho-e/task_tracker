@@ -40,6 +40,8 @@ defmodule TaskTrackerWeb do
       import TaskTrackerWeb.ErrorHelpers
       import TaskTrackerWeb.Gettext
       alias TaskTrackerWeb.Router.Helpers, as: Routes
+      alias TaskTrackerWeb.UserView, as: UserView
+
 
     end
   end

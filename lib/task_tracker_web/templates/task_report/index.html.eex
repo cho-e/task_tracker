@@ -1,0 +1,25 @@
+
+<h1>Task Report</h1>
+<table class="table table-striped">
+<%= for task <- @tasks do %>
+  <thead>
+    <th>Underlings' Tasks</th>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Assigned To</th>
+      <th>Completed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td><%= task.title %></td>
+        <td><%= task.description %></td>
+        <td><%= task.user.name %></td>
+        <td><%= task.completed %></td>
+    </tr>
+  </tbody>
+  </table>
+<% end %>
+</table>
+<table class="table table-striped

@@ -19,7 +19,7 @@
 
   <div class="form-group">
     <%= label f, :manager_id, class: "control-label" %>
-    <%= select f, :manager_id, [{"", nil} | Enum.map(@users, &{&1.name, &1.id})], class: "form-control" %>
+    <%= select f, :manager_id, [{"", nil} | Enum.map(TaskTracker.Users.list_users(), &{&1.name, &1.id})], class: "form-control" %>
     <%= error_tag f, :manager_id %>
   </div>
 

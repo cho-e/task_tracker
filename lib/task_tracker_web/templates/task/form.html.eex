@@ -29,11 +29,16 @@
     <%= error_tag f, :completed %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :user_id, class: "control-label" %>
-    <%= select f, :user_id, Enum.map(@users, &{&1.name, &1.id}), class: "form-control" %>
-    <%= error_tag f, :user_id %>
-  </div>
+  <%= if TaskTrackerWeb.UserView.is_manager?(@current_user.id) do %>
+    <div class="form-group">
+      <%= label f, :user_id, class: "control-label" %>
+      <%= select f, :user_id, Enum.map(@users, &{&1.name, &1.id}), class: "form-control" %>
+      <%= error_tag f, :user_id %>
+    </div>
+  <% else %>
+  <%= hidden_input f, :user_id %>
+  <% end %>
+
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
