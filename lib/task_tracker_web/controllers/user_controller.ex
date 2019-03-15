@@ -1,6 +1,7 @@
 defmodule TaskTrackerWeb.UserController do
   use TaskTrackerWeb, :controller
 
+  alias TaskTracker.Repo
   alias TaskTracker.Users
   alias TaskTracker.Users.User
 
@@ -28,6 +29,7 @@ defmodule TaskTrackerWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Users.get_user!(id)
+    |> Repo.preload(:manager)
     render(conn, "show.html", user: user)
   end
 
