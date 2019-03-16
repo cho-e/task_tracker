@@ -4,6 +4,9 @@ defmodule TaskTrackerWeb.UserController do
   alias TaskTracker.Repo
   alias TaskTracker.Users
   alias TaskTracker.Users.User
+  alias TaskTracker.Tasks
+  alias TaskTracker.Tasks.Task
+
 
   def index(conn, _params) do
     users = Users.list_users()

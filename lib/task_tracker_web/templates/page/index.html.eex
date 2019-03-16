@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-12">
       <h1>Welcome to Task Tracker</h1>
+      <%= if !@current_user do %>
       <p><%= link "Register", to: Routes.user_path(@conn, :new) %></p>
+      <% end %>
 
     </div>
   </div>

@@ -5,7 +5,6 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
-      <th>Time spent</th>
       <th>Completed</th>
       <th>Assigned to</th>
 
@@ -17,12 +16,11 @@
     <tr>
       <td><%= task.title %></td>
       <td><%= task.description %></td>
-      <td><%= task.time_spent %></td>
       <td><%= task.completed %></td>
       <td><%= task.user.name %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: Routes.task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "View Details", to: Routes.task_path(@conn, :show, task), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Edit", to: Routes.task_path(@conn, :edit, task), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: Routes.task_path(@conn, :delete, task), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>

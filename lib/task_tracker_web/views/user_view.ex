@@ -9,4 +9,7 @@ defmodule TaskTrackerWeb.UserView do
     TaskTracker.Users.get_underlings_for_user(user_id)
   end
 
+  def get_tasks_for_user(user_id) do
+    TaskTracker.Tasks.get_tasks_for_user(user_id)
+  end
 end

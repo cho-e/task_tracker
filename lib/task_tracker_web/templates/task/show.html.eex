@@ -13,11 +13,6 @@
   </li>
 
   <li>
-    <strong>Time spent:</strong>
-    <%= @task.time_spent %>
-  </li>
-
-  <li>
     <strong>Completed:</strong>
     <%= @task.completed %>
   </li>
@@ -29,5 +24,43 @@
 
 </ul>
 
+<%= if @task.user.id == @current_user.id do %>
+<div>
+  <button id="start-btn"
+          data-task-id="<%= @task.id %>"
+          class="btn btn-secondary">Start</button>
+  <button id="stop-btn"
+          data-task-id="<%= @task.id %>"
+          class="btn btn-secondary">End</button>
+  </div>
+  <span class="current-start"></span>
+<br/>
+<% end %>
+
+<table class="table">
+  <thead>
+    <strong>Time Blocks:</strong>
+    <tr>
+      <th>Start</th>
+      <th>End</th>
+      <th>Duration (minutes)</th>
+      <th></th>
+  </thead>
+  <tbody>
+    <%= for t <- get_time_blocks_for_task(@task.id) do %>
+      <tr>
+        <td><%= DateTime.to_date(t.start) %></td>
+        <td><%= t.end %></td>
+        <td> <%= DateTime.diff(t.end, t.start, :second) / 60 %></td>
+        <td>
+          <button class="tb-edit-btn btn btn-default btn-xs">Edit</button>
+          <button class="tb-delete-btn btn btn-default btn-xs">Delete</button>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
 <span><%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></span>
-<span><%= link "Back", to: Routes.task_path(@conn, :index) %></span>
+<span><%= link "View all tasks", to: Routes.task_path(@conn, :index) %></span>

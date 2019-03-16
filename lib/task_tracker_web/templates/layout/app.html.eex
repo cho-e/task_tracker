@@ -25,17 +25,19 @@
           </li>
           <%= if @current_user do %>
             <li class="nav-item">
-              <a class="nav-link" href="/users">All Users</a>
+              <a class="nav-link" href="/users">Users</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/tasks">All Tasks</a>
+              <a class="nav-link" href="/tasks">Tasks</a>
             </li>
             <%= if UserView.is_manager?(@current_user.id) do %>
-
             <li class="nav-item">
               <a class="nav-link" href="/task_reports">Task Report</a>
             </li>
             <% end %>
+            <li class="nav-item">
+              <span><%= link "User profile", to: Routes.user_path(@conn, :show, @current_user), class: "btn btn-default btn-xs" %></span>
+            </li>
           <% end %>
         </ul>
       </div>

@@ -18,12 +18,6 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :time_spent, class: "control-label" %>
-    <%= number_input f, :time_spent, step: "15", class: "form-control" %>
-    <%= error_tag f, :time_spent %>
-  </div>
-
-  <div class="form-group">
     <%= label f, :completed, class: "control-label" %>
     <%= checkbox f, :completed, class: "checkbox" %>
     <%= error_tag f, :completed %>
@@ -32,7 +26,7 @@
   <%= if TaskTrackerWeb.UserView.is_manager?(@current_user.id) do %>
     <div class="form-group">
       <%= label f, :user_id, class: "control-label" %>
-      <%= select f, :user_id, Enum.map(@users, &{&1.name, &1.id}), class: "form-control" %>
+      <%= select f, :user_id, Enum.map(TaskTracker.Users.get_underlings_for_user(@current_user.id), &{&1.name, &1.id}), class: "form-control" %>
       <%= error_tag f, :user_id %>
     </div>
   <% else %>

@@ -49,6 +49,14 @@ defmodule TaskTracker.Tasks do
     |> Repo.preload(:user)
   end
 
+  def get_tasks_for_user(user_id) do
+    Task
+    |> order_by(asc: :id)
+    |> where([task], task.user_id == ^user_id)
+    |> Repo.all()
+    |> Repo.preload(:user)
+
+  end
   @doc """
   Creates a task.
 
